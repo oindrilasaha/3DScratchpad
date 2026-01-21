@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 // 3D Scratchpad Viewer
 // Coordinate convention:
@@ -284,6 +285,11 @@ function createViewer({ containerId, modelPaths, colorOffset = 0, onLoadComplete
     renderer.domElement.addEventListener('wheel', enableUserControls, { once: true });
 
     const loader = new GLTFLoader();
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
+    dracoLoader.setDecoderConfig({ type: 'js' }); // Ensure compatibility
+    loader.setDRACOLoader(dracoLoader);
+
     function loadModel(path) {
         return new Promise((resolve, reject) => {
             loader.load(path, (gltf) => resolve(gltf.scene), undefined, reject);
