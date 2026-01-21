@@ -267,7 +267,8 @@ function createViewer({ containerId, modelPaths, colorOffset = 0, onLoadComplete
         }
     }
     renderer.domElement.addEventListener('pointerdown', enableUserControls, { once: true });
-    renderer.domElement.addEventListener('wheel', enableUserControls, { once: true });
+    // Removed wheel listener to prevent accidental activation/hint-hiding while scrolling the page
+    // renderer.domElement.addEventListener('wheel', enableUserControls, { once: true });
 
     // Create interaction hint overlay (after canvas is ready)
     const hint = document.createElement('div');
