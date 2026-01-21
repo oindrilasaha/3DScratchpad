@@ -273,8 +273,25 @@ function createViewer({ containerId, modelPaths, colorOffset = 0, onLoadComplete
     // Create interaction hint overlay (after canvas is ready)
     const hint = document.createElement('div');
     hint.className = 'interaction-hint';
+    // Force styles inline to avoid CSS cache issues
+    hint.style.position = 'absolute';
+    hint.style.top = '50%';
+    hint.style.left = '50%';
+    hint.style.transform = 'translate(-50%, -50%)';
+    hint.style.zIndex = '100000'; // Very high z-index
+    hint.style.pointerEvents = 'none';
+
     hint.innerHTML = `
-        <div class="hint-icon-container">
+        <div class="hint-icon-container" style="
+            background: rgba(255, 255, 255, 0.9);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        ">
             <svg viewBox="0 0 100 100" width="52" height="52" style="overflow: visible;">
                 <!-- Curved Arrow (Rotation) -->
                 <path d="M 15 60 A 35 35 0 0 1 70 20" fill="none" stroke="#3498db" stroke-width="5" stroke-linecap="round" />
@@ -289,6 +306,7 @@ function createViewer({ containerId, modelPaths, colorOffset = 0, onLoadComplete
     const existingHint = container.querySelector('.interaction-hint');
     if (existingHint) existingHint.remove();
     container.appendChild(hint);
+    console.log(`Hint added to ${containerId}`);
 
     const loader = new GLTFLoader();
     const dracoLoader = new DRACOLoader();
