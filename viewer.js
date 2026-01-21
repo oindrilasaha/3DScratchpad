@@ -271,6 +271,25 @@ function createViewer({ containerId, modelPaths, colorOffset = 0, onLoadComplete
     // renderer.domElement.addEventListener('wheel', enableUserControls, { once: true });
 
     // Create interaction hint overlay (after canvas is ready)
+    // Inject styles for animation if not present
+    if (!document.getElementById('hint-animation-styles')) {
+        const styleSheet = document.createElement('style');
+        styleSheet.id = 'hint-animation-styles';
+        styleSheet.textContent = `
+            @keyframes pulse-shadow-inline {
+                0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+                70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+                100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+            }
+            @keyframes hand-wiggle-inline {
+                0%, 100% { transform: rotate(0deg) scale(1); }
+                25% { transform: rotate(-15deg) scale(1.1); }
+                75% { transform: rotate(15deg) scale(1.1); }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    }
+
     const hint = document.createElement('div');
     hint.className = 'interaction-hint';
     // Force styles inline to avoid CSS cache issues
@@ -291,8 +310,9 @@ function createViewer({ containerId, modelPaths, colorOffset = 0, onLoadComplete
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            animation: pulse-shadow-inline 2s infinite;
         ">
-            <svg viewBox="0 0 100 100" width="52" height="52" style="overflow: visible;">
+            <svg viewBox="0 0 100 100" width="52" height="52" style="overflow: visible; animation: hand-wiggle-inline 2s ease-in-out infinite;">
                 <!-- Curved Arrow (Rotation) -->
                 <path d="M 15 60 A 35 35 0 0 1 70 20" fill="none" stroke="#3498db" stroke-width="5" stroke-linecap="round" />
                 <path d="M 15 60 L 2 48 M 15 60 L 28 50" fill="none" stroke="#3498db" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
