@@ -1,0 +1,108 @@
+{
+  "9": {
+    "2": [
+      "obj_mesh_placed_agent2_0.glb",
+      "obj_mesh_placed_agent2_1.glb"
+    ],
+    "1": [
+      "obj_mesh_placed_agent1_0.glb",
+      "obj_mesh_placed_agent1_1.glb"
+    ]
+  },
+  "0": {
+    "2": [
+      "obj_mesh_placed_agent2_0.glb",
+      "obj_mesh_placed_agent2_1.glb"
+    ],
+    "1": [
+      "obj_mesh_placed_agent1_0.glb",
+      "obj_mesh_placed_agent1_1.glb"
+    ]
+  },
+  "7": {
+    "2": [
+      "obj_mesh_placed_agent2_0.glb",
+      "obj_mesh_placed_agent2_1.glb",
+      "obj_mesh_placed_agent2_2.glb"
+    ],
+    "1": [
+      "obj_mesh_placed_agent1_0.glb",
+      "obj_mesh_placed_agent1_1.glb",
+      "obj_mesh_placed_agent1_2.glb"
+    ]
+  },
+  "6": {
+    "2": [
+      "obj_mesh_placed_agent2_0.glb",
+      "obj_mesh_placed_agent2_1.glb",
+      "obj_mesh_placed_agent2_2.glb"
+    ],
+    "1": [
+      "obj_mesh_placed_agent1_0.glb",
+      "obj_mesh_placed_agent1_1.glb",
+      "obj_mesh_placed_agent1_2.glb"
+    ]
+  },
+  "1": {
+    "2": [
+      "obj_mesh_placed_agent2_0.glb",
+      "obj_mesh_placed_agent2_1.glb",
+      "obj_mesh_placed_agent2_2.glb",
+      "obj_mesh_placed_agent2_3.glb"
+    ],
+    "1": [
+      "obj_mesh_placed_agent1_0.glb",
+      "obj_mesh_placed_agent1_1.glb",
+      "obj_mesh_placed_agent1_2.glb",
+      "obj_mesh_placed_agent1_3.glb"
+    ]
+  },
+  "8": {
+    "2": [
+      "obj_mesh_placed_agent2_0.glb",
+      "obj_mesh_placed_agent2_1.glb",
+      "obj_mesh_placed_agent2_2.glb"
+    ],
+    "1": [
+      "obj_mesh_placed_agent1_0.glb",
+      "obj_mesh_placed_agent1_1.glb",
+      "obj_mesh_placed_agent1_2.glb"
+    ]
+  },
+  "4": {
+    "2": [
+      "obj_mesh_placed_agent2_0.glb",
+      "obj_mesh_placed_agent2_1.glb",
+      "obj_mesh_placed_agent2_2.glb"
+    ],
+    "1": [
+      "obj_mesh_placed_agent1_0.glb",
+      "obj_mesh_placed_agent1_1.glb",
+      "obj_mesh_placed_agent1_2.glb"
+    ]
+  },
+  "3": {
+    "2": [
+      "obj_mesh_placed_agent2_0.glb",
+      "obj_mesh_placed_agent2_1.glb",
+      "obj_mesh_placed_agent2_2.glb"
+    ],
+    "1": [
+      "obj_mesh_placed_agent1_0.glb",
+      "obj_mesh_placed_agent1_1.glb",
+      "obj_mesh_placed_agent1_2.glb"
+    ]
+  },
+  "2": {
+    "2": [
+      "obj_mesh_placed_agent2_0.glb",
+      "obj_mesh_placed_agent2_1.glb",
+      "obj_mesh_placed_agent2_2.glb"
+    ],
+    "1": [
+      "obj_mesh_placed_agent1_0.glb",
+      "obj_mesh_placed_agent1_1.glb",
+      "obj_mesh_placed_agent1_2.glb"
+    ]
+  }
+}

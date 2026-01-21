@@ -187,7 +187,7 @@ function applyTintPreserveTextures(root, tint) {
     });
 }
 
-function createViewer({ containerId, modelPaths, colorOffset = 0 }) {
+function createViewer({ containerId, modelPaths, colorOffset = 0, onLoadComplete }) {
     const container = document.getElementById(containerId);
     if (!container) {
         console.warn(`Viewer container not found: ${containerId}`);
@@ -307,6 +307,8 @@ function createViewer({ containerId, modelPaths, colorOffset = 0 }) {
             renderOnce();
         } catch (e) {
             console.error(`Failed to load one or more GLB models for ${containerId}:`, e);
+        } finally {
+            if (onLoadComplete) onLoadComplete();
         }
     }
 
@@ -335,74 +337,100 @@ function createViewer({ containerId, modelPaths, colorOffset = 0 }) {
     return { scene, camera, renderer, controls, scratchpad };
 }
 
-function modelPathsFor(folderIndex, agent) {
+
+// Use Manifest for Model Discovery
+let gManifest = null;
+async function fetchManifest() {
+    if (gManifest) return gManifest;
+    try {
+        const res = await fetch('assets_manifest.json');
+        if (res.ok) {
+            gManifest = await res.json();
+            return gManifest;
+        }
+    } catch (e) {
+        console.warn("Could not load assets_manifest.json, falling back to probing.");
+    }
+    return null;
+}
+
+// Probing fallback
+function modelPathsForFallback(folderIndex, agent) {
     const agentStr = String(agent);
     const paths = [];
-
-    // Folders have variable numbers of meshes. We don't have directory listing on a static site,
-    // so we probe sequential indices and stop at the first missing file.
-    const maxMeshesToTry = 20;
-
+    const maxMeshesToTry = 10; // reduced
     for (let i = 0; i < maxMeshesToTry; i++) {
-        const p = `assets/${folderIndex}/obj_mesh_placed_agent${agentStr}_${i}.glb`;
-        paths.push(p);
+        paths.push(`assets/${folderIndex}/obj_mesh_placed_agent${agentStr}_${i}.glb`);
     }
-
-    // We'll filter to only existing files by doing HEAD requests.
-    // Note: requires serving over http(s) (not file://).
     return paths;
 }
 
-async function filterExistingPaths(paths) {
-    const checks = await Promise.all(
-        paths.map(async (p) => {
-            try {
-                const res = await fetch(p, { method: 'HEAD' });
-                return res.ok ? p : null;
-            } catch {
-                return null;
-            }
-        })
-    );
-
-    return checks.filter(Boolean);
+async function getModelPaths(folder, agent) {
+    const manifest = await fetchManifest();
+    if (manifest && manifest[folder] && manifest[folder][agent]) {
+        // Use manifest
+        return manifest[folder][agent].map(f => `assets/${folder}/${f}`);
+    } else {
+        // Fallback to probing
+        const candidates = modelPathsForFallback(folder, agent);
+        const checks = await Promise.all(
+            candidates.map(async (p) => {
+                try {
+                    const res = await fetch(p, { method: 'HEAD' });
+                    return res.ok ? p : null;
+                } catch { return null; }
+            })
+        );
+        return checks.filter(Boolean);
+    }
 }
 
 function initAllScratchpads() {
     const els = Array.from(document.querySelectorAll('.scratchpad'));
-    if (els.length === 0) {
-        console.warn('No .scratchpad elements found in the DOM.');
-        return;
-    }
+    if (els.length === 0) return;
+
+    // Lazy Load Observer
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                obs.unobserve(el); // only init once
+
+                const folder = el.dataset.folder;
+                const agent = el.dataset.agent;
+
+                // Add Spinner
+                const spinner = document.createElement('div');
+                spinner.className = 'viewer-spinner';
+                el.appendChild(spinner);
+
+                getModelPaths(folder, agent).then((existing) => {
+                    if (existing.length > 0) {
+                        createViewer({
+                            containerId: el.id,
+                            modelPaths: existing,
+                            colorOffset: 0,
+                            onLoadComplete: () => {
+                                if(spinner.parentNode) spinner.remove();
+                            }
+                        });
+                    } else {
+                        if(spinner.parentNode) spinner.remove();
+                        el.textContent = "No models found.";
+                    }
+                });
+            }
+        });
+    }, { rootMargin: '200px' }); // start loading 200px before view
 
     els.forEach((el) => {
         const folder = el.dataset.folder;
         const agent = el.dataset.agent;
+        if (!folder || !agent) return;
 
-        if (folder == null || agent == null) {
-            console.warn('Scratchpad is missing data-folder or data-agent:', el);
-            return;
-        }
-
-        // Ensure the element has an id for createViewer's current API.
-        if (!el.id) {
-            el.id = `scratchpad-${folder}-${agent}`;
-        }
-
-        // Discover which GLBs exist for this folder/agent.
-        const candidates = modelPathsFor(folder, agent);
-        filterExistingPaths(candidates).then((existing) => {
-            if (existing.length === 0) {
-                console.warn(`No GLBs found for folder=${folder} agent=${agent}`);
-                return;
-            }
-
-            createViewer({
-                containerId: el.id,
-                modelPaths: existing,
-                colorOffset: 0,
-            });
-        });
+        if (!el.id) el.id = `scratchpad-${folder}-${agent}`;
+        
+        observer.observe(el);
     });
 }
 
