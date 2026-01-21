@@ -238,14 +238,14 @@ function createViewer({ containerId, modelPaths, colorOffset = 0, onLoadComplete
     hint.className = 'interaction-hint';
     hint.innerHTML = `
         <div class="hint-icon-container">
-            <svg viewBox="0 0 100 100" width="48" height="48" style="overflow: visible;">
+            <svg viewBox="0 0 100 100" width="52" height="52" style="overflow: visible;">
                 <!-- Curved Arrow (Rotation) -->
-                <path d="M 20 60 A 30 30 0 0 1 65 25" fill="none" stroke="#2c3e50" stroke-width="6" stroke-linecap="round" />
-                <path d="M 20 60 L 8 45 M 20 60 L 35 52" fill="none" stroke="#2c3e50" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M 15 60 A 35 35 0 0 1 70 20" fill="none" stroke="#3498db" stroke-width="5" stroke-linecap="round" />
+                <path d="M 15 60 L 2 48 M 15 60 L 28 50" fill="none" stroke="#3498db" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 
                 <!-- Cursor -->
-                <path d="M 50 40 L 50 78 L 60 68 L 71 88 L 80 83 L 69 63 L 82 63 Z" 
-                      fill="white" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round"/>
+                <path d="M 48 38 L 48 75 L 58 66 L 70 86 L 80 80 L 68 60 L 82 60 Z" 
+                      fill="white" stroke="#2c3e50" stroke-width="3" stroke-linejoin="round"/>
             </svg>
         </div>
     `;
