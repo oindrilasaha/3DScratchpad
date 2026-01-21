@@ -233,26 +233,6 @@ function createViewer({ containerId, modelPaths, colorOffset = 0, onLoadComplete
     if (existingCanvas) existingCanvas.remove();
     container.appendChild(renderer.domElement);
 
-    // Create interaction hint overlay
-    const hint = document.createElement('div');
-    hint.className = 'interaction-hint';
-    hint.innerHTML = `
-        <div class="hint-icon-container">
-            <svg viewBox="0 0 100 100" width="52" height="52" style="overflow: visible;">
-                <!-- Curved Arrow (Rotation) -->
-                <path d="M 15 60 A 35 35 0 0 1 70 20" fill="none" stroke="#3498db" stroke-width="5" stroke-linecap="round" />
-                <path d="M 15 60 L 2 48 M 15 60 L 28 50" fill="none" stroke="#3498db" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-
-                <!-- Cursor -->
-                <path d="M 48 38 L 48 75 L 58 66 L 70 86 L 80 80 L 68 60 L 82 60 Z" 
-                      fill="white" stroke="#2c3e50" stroke-width="3" stroke-linejoin="round"/>
-            </svg>
-        </div>
-    `;
-    const existingHint = container.querySelector('.interaction-hint');
-    if (existingHint) existingHint.remove();
-    container.appendChild(hint);
-
     // Lighting
     scene.add(new THREE.AmbientLight(0xffffff, 0.65));
     const dir = new THREE.DirectionalLight(0xffffff, 0.85);
@@ -278,11 +258,36 @@ function createViewer({ containerId, modelPaths, colorOffset = 0, onLoadComplete
     function enableUserControls() {
         controls.enableRotate = true;
         controls.enableZoom = true;
-        hint.classList.add('fade-out');
-        setTimeout(() => hint.remove(), 500);
+        const hint = container.querySelector('.interaction-hint');
+        if (hint) {
+            hint.classList.add('fade-out');
+            setTimeout(() => {
+                if (hint.parentNode) hint.remove();
+            }, 500);
+        }
     }
     renderer.domElement.addEventListener('pointerdown', enableUserControls, { once: true });
     renderer.domElement.addEventListener('wheel', enableUserControls, { once: true });
+
+    // Create interaction hint overlay (after canvas is ready)
+    const hint = document.createElement('div');
+    hint.className = 'interaction-hint';
+    hint.innerHTML = `
+        <div class="hint-icon-container">
+            <svg viewBox="0 0 100 100" width="52" height="52" style="overflow: visible;">
+                <!-- Curved Arrow (Rotation) -->
+                <path d="M 15 60 A 35 35 0 0 1 70 20" fill="none" stroke="#3498db" stroke-width="5" stroke-linecap="round" />
+                <path d="M 15 60 L 2 48 M 15 60 L 28 50" fill="none" stroke="#3498db" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Cursor -->
+                <path d="M 48 38 L 48 75 L 58 66 L 70 86 L 80 80 L 68 60 L 82 60 Z" 
+                      fill="white" stroke="#2c3e50" stroke-width="3" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    `;
+    const existingHint = container.querySelector('.interaction-hint');
+    if (existingHint) existingHint.remove();
+    container.appendChild(hint);
 
     const loader = new GLTFLoader();
     const dracoLoader = new DRACOLoader();
