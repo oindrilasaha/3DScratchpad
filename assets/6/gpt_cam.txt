@@ -1,0 +1,9 @@
+First proposal view.
+
+Reason:
+- It best matches the prompt layout: record player on the left, radio on the right, sleeve behind them facing forward.
+- The radio’s dial side is visible and the unit is angled to the right.
+- The record player’s arm appears inward and is clearly visible.
+- The sleeve is centered behind and mostly unobstructed, giving good depth and a balanced composition.
+
+Other views either obscure the sleeve, hide the radio’s dial side, or use overhead angles that reduce prompt fidelity.

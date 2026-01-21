@@ -1,0 +1,7 @@
+Subjects:
+- a monitor turned slightly to the right with a blank screen
+- a laptop angled to the left in the foreground with a blank screen
+- a lamp positioned on the right side
+
+Background:
+- a simple table surface

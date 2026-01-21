@@ -1,0 +1,23 @@
+Planned scene/background
+- Flat road aligned with +Z (toward the distance), centered near X≈0. Lane edges flare with Z to match the trapezoid frustum. Add faint centerline and road shoulders; open fields/trees on both sides and low horizon. 
+- Place the silver hatchback closer to the camera and slightly to the right side of the road (negative X). 
+- Place the tractor behind it and slightly offset to the left so they’re close in X but not overlapping. Both sit on the ground plane (y0 = -1).
+
+3D bounding boxes (axis-aligned, using the objects’ image orientations and preserving X:Y:Z aspect ratios)
+{
+  "a silver hatchback": [-0.45, -1.0, 2.35, 0.05, -0.50, 3.15],
+  "a tractor": [0.06, -1.0, 3.20, 0.66, -0.28, 4.10]
+}
+
+Checks
+- Both corner points for each box lie within scene bounds: at z=2.35, X∈[-1.175,1.175]; at z=3.15, X∈[-1.575,1.575]; at z=3.20, X∈[-1.6,1.6]; at z=4.10, X∈[-2.05,2.05].
+- Aspect ratios:
+  - Hatchback width:height:length = 0.50:0.50:0.80 → 1:1.0:1.6.
+  - Tractor width:height:length = 0.60:0.72:0.90 → 1:1.2:1.5.
+- Natural relative heights: tractor top y=-0.28 is higher than hatchback top y=-0.50. 
+- Close in X but not overlapping: hatchback X∈[-0.45,0.05]; tractor X∈[0.06,0.66] (0.01 gap). 
+- Depth ordering: tractor is behind (its z0=3.20 > hatchback z1=3.15). Neither object extends near the back wall (z1 well under 5.0).
+
+Orientation suggestions (to be applied after placement; do not change boxes)
+- A silver hatchback: yaw about +60° (front pointing toward +X/left edge of the frame), pitch 0°, roll 0°. 
+- A tractor: yaw 0° (face straight toward the camera, i.e., -Z), pitch 0°, roll 0°.

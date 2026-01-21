@@ -1,0 +1,7 @@
+Subject prompts:
+- a kettle on the left with its spout pointing to the right
+- an empty oven on the right with its door open toward the viewer
+- an empty toaster farther back, facing forward
+
+Background prompt:
+- a simple indoor setting with a wooden table surface, a plain neutral wall, even lighting, and clear front-to-back depth

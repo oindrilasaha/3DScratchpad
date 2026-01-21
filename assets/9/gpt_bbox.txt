@@ -1,0 +1,28 @@
+Planning for background (to satisfy “at an airport” and depth cues):
+- Ground: polished terminal floor on the XZ plane (Y = -1.0), with subtle tile seams running along +Z.
+- Far backdrop: glass curtain wall and gate area spanning Z ≈ 4.4–4.8 with exterior tarmac visible; overhead signage around Y ≈ 0.2 to 0.6 at Z ≈ 4.2.
+- Lighting: soft overhead lights producing floor reflections near the objects.
+
+Placement logic:
+- Keep the suitcase closer to the camera and centered; backpack slightly to the right (negative X) and behind it so it remains visible.
+- Maintain each object’s X:Y:Z aspect ratio exactly as given.
+
+Chosen box sizes (heights ≥ 0.3 and realistic):
+- Suitcase (ratio 1:1.8:0.5): Y = 0.72 → X = 0.40, Z = 0.20.
+- Backpack (ratio 1:1.4:1.1): Y = 0.60 → X = 0.43, Z = 0.47.
+
+3D bounding boxes [x0, y0, z0, x1, y1, z1]:
+{
+  "a suitcase with its handle extended upward": [-0.100, -1.000, 2.350, 0.300, -0.280, 2.550],
+  "a backpack": [-0.590, -1.000, 2.800, -0.160, -0.400, 3.270]
+}
+
+Notes:
+- Both corners of each box are within the scene bounds. The suitcase sits on the ground (Y from -1.0 to -0.28), in front of the backpack (suitcase back z1 = 2.55; backpack front z0 = 2.80).
+- X separation is small but non-overlapping: suitcase spans X ≈ [-0.10, 0.30]; backpack spans X ≈ [-0.59, -0.16].
+
+Orientation suggestions (to apply after placement; boxes assume upright, unrotated objects as in the images):
+- Suitcase: standing upright on wheels, handle extended upward; face toward the camera (front normal ≈ -Z), yaw ≈ 0°, no roll/pitch.
+- Backpack: standing upright; rotate partially left so its front turns toward +X (left) while still facing somewhat toward the viewer, yaw ≈ +25° to +35° around Y; no roll, slight forward lean (pitch ≈ -5°) optional for realism.
+
+These placements keep the items close together, non-overlapping, and plausible for an airport scene.

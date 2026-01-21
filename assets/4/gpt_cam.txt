@@ -1,0 +1,7 @@
+Fourth proposal view.
+
+Reasoning:
+- Camera is clearly front-facing.
+- Lens sits beside the camera with its opening oriented left, matching “faces left.”
+- Tripod is placed behind the camera and leans to the right, with good separation and visibility.
+- Other views either obscure the tripod (3), show the camera’s back (5), introduce angle/ambiguity or unclear lens orientation (1, 2).

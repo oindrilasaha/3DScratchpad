@@ -1,0 +1,27 @@
+Analysis of aspect ratios (normalized by X size)
+
+- a left shoe
+  - Box: [-0.15, -1.00, 2.86, 0.55, -0.65, 3.14]
+  - Sizes ΔX=0.70, ΔY=0.35, ΔZ=0.28 → normalized (1 : 0.5 : 0.4)
+  - Matches required 1 : 0.5 : 0.4
+
+- a right shoe
+  - Box: [-0.95, -1.00, 2.90, -0.25, -0.65, 3.18]
+  - Sizes ΔX=0.70, ΔY=0.35, ΔZ=0.28 → normalized (1 : 0.5 : 0.4)
+  - Matches required 1 : 0.5 : 0.4
+
+- an empty shoebox
+  - Box: [0.60, -1.00, 3.90, 1.50, -0.19, 4.44]
+  - Sizes ΔX=0.90, ΔY=0.81, ΔZ=0.54 → normalized (1 : 0.9 : 0.6)
+  - Matches required 1 : 0.9 : 0.6
+
+Height realism (compare only Y sizes)
+- Shoes: 0.35 each; Shoebox: 0.81. The box is taller than the shoes, which is reasonable with the lid open and remains within scene limits. All Y sizes ≥ 0.3.
+
+No aspect-ratio corrections are needed. Final bounding boxes (unchanged):
+
+{
+  "a left shoe": [-0.15, -1.00, 2.86, 0.55, -0.65, 3.14],
+  "a right shoe": [-0.95, -1.00, 2.90, -0.25, -0.65, 3.18],
+  "an empty shoebox": [0.60, -1.00, 3.90, 1.50, -0.19, 4.44]
+}

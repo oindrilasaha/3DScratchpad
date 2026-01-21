@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Space as a Scratchpad for Editable Text-to-Image Generation</title>
+    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1 class="title">3D Space as a Scratchpad for Editable Text-to-Image Generation</h1>
+            
+            <!-- Authors -->
+            <div class="authors">
+                <span class="author-block">
+                    <a href="https://oindrilasaha.github.io/" target="_blank">Oindrila Saha</a><sup>1</sup>,
+                </span>
+                <span class="author-block">
+                    <a href="https://research.adobe.com/person/vojtech-krs/" target="_blank">Vojtech Krs</a><sup>2</sup>,
+                </span>
+                <span class="author-block">
+                    <a href="https://research.adobe.com/person/radomir-mech/" target="_blank">Radomir Mech</a><sup>2</sup>,
+                </span><br>
+                <span class="author-block">
+                    <a href="https://people.cs.umass.edu/~smaji/" target="_blank">Subhransu Maji</a><sup>1</sup>,
+                </span>
+                <span class="author-block">
+                    <a href="https://mgadelha.me/" target="_blank">Matheus Gadelha</a><sup>2*</sup>,
+                </span>
+                <span class="author-block">
+                    <a href="https://www.kmatzen.com/" target="_blank">Kevin Blackburn-Matzen</a><sup>2*</sup>
+                </span>
+            </div>
+
+            <!-- Affiliations -->
+            <div class="affiliations">
+                <span class="affiliation-block">
+                    <sup>1</sup> University of Massachusetts Amherst<br>
+                    <sup>2</sup> Adobe Research
+                </span>
+                <div class="equal-contribution">
+                    <sup>*</sup> Equal advising
+                </div>
+            </div>
+
+            <!-- Links -->
+            <div class="links">
+                <a href="#" class="button" target="_blank">
+                    <i class="fas fa-file-pdf"></i> Paper (arXiv)
+                </a>
+                <a href="#" class="button" target="_blank">
+                    <i class="fab fa-github"></i> Code
+                </a>
+            </div>
+        </header>
+
+        <!-- Teaser Figure -->
+        <section class="teaser">
+            <img src="teaser_3dscratch.png" alt="3D Scratchpad Teaser" class="teaser-image">
+            <p class="caption">
+                <strong>Spatial scratchpads enable structured 3D reasoning for controllable image generation.</strong>
+                Our method constructs a 3D spatial scratchpad from a text prompt, representing subjects as editable meshes with explicit geometry and spatial relations.
+                Users or language agents can manipulate this scene — moving, resizing, or reorienting objects — through either text-based or interactive edits.
+                The updated 3D configuration is re-rendered via a 3D-guided text-to-image pipeline, producing identity-preserving and spatially coherent images that remain faithful to the original prompt.
+                This demonstrates how 3D reasoning serves as an effective intermediate workspace linking linguistic intent and precise visual synthesis.
+            </p>
+        </section>
+
+        <!-- Abstract Section -->
+        <section class="abstract">
+            <h2>Abstract</h2>
+            <p>
+                Recent progress in large language models (LLMs) has shown that reasoning improves when intermediate thoughts are externalized into explicit workspaces, such as chain-of-thought traces or tool-augmented reasoning.
+                Yet, visual language models (VLMs) lack an analogous mechanism for spatial reasoning, limiting their ability to generate images that accurately reflect geometric relations, object identities, and compositional intent.
+                We introduce the concept of a <em>spatial scratchpad</em> — a 3D reasoning substrate that bridges linguistic intent and image synthesis.
+                Given a text prompt, our framework parses subjects and background elements, instantiates them as editable 3D meshes, and employs agentic scene planning for placement, orientation, and viewpoint selection.
+                The resulting 3D arrangement is rendered back into the image domain with identity-preserving cues, enabling the VLM to generate spatially consistent and visually coherent outputs.
+                Unlike prior 2D layout-based methods, our approach supports intuitive 3D edits that propagate reliably into final images.
+                Empirically, it achieves a <strong>32%</strong> improvement in text alignment on GenAI-Bench, demonstrating the benefit of explicit 3D reasoning for precise, controllable image generation.
+                Our results highlight a new paradigm for vision–language models that deliberate not only in language, but also in space.
+            </p>
+        </section>
+
+        <!-- Method Section -->
+        <section class="method">
+            <h2>Method</h2>
+            <figure class="method-figure">
+                <img src="3dscratch_method.png" alt="Overview of a 3D spatial scratchpad" class="method-image">
+                <figcaption class="method-caption">
+                    <strong>Overview of a 3D spatial scratchpad.</strong>
+                    Given an input prompt <em>P</em> we illustrate how our method uses a 3D space as an underlying representation to generate an image that has superior alignment to the prompt.
+                    Agent <span class="mcircle">1</span> is responsible for decomposing the input prompt into subjects and background.
+                    Agent <span class="mcircle">2</span> provides 3D bounding boxes for each subject.
+                    We render the scratchpad and subsequently generate an image based on these placements which is then given to agent <span class="mcircle">3</span> that adjusts transformations of the meshes.
+                    Finally, agent <span class="mcircle">4</span> chooses the best camera viewpoint from a set of proposals to generate the final image.
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- 3D Visualization Section -->
+        <section class="visualization">
+            <h2>Interactive 3D Scratchpad Visualization</h2>
+            <div class="visualization-container">
+                <div class="viewer-row">
+                    <div class="prompt" data-folder="0"></div>
+                    <div class="prompt-down-arrow" aria-hidden="true">
+                        <div class="circle circle-1">1</div>
+                        <div class="circle circle-2">2</div>
+                    </div>
+
+                    <div class="scratchpad-pair">
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="0" data-agent="1"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+
+                        <div class="between-arrow" aria-hidden="true">
+                            <div class="circle circle-3">3</div>
+                        </div>
+
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="0" data-agent="2"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="agent2-render-pair">
+                        <div class="between-arrow-2" aria-hidden="true">
+                            <div class="circle circle-4">4</div>
+                        </div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="0" data-kind="rendered" alt="Rendered image">
+                            <figcaption class="tile-caption">Chosen proposal view</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="render-gen-pair">
+                        <div class="between-arrow-3" aria-hidden="true"></div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="0" data-kind="generated" alt="Generated image">
+                            <figcaption class="tile-caption">Identity and Structure controlled image</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="viewer-row">
+                    <div class="prompt" data-folder="1"></div>
+                    <div class="prompt-down-arrow" aria-hidden="true">
+                        <div class="circle circle-1">1</div>
+                        <div class="circle circle-2">2</div>
+                    </div>
+
+                    <div class="scratchpad-pair">
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="1" data-agent="1"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+
+                        <div class="between-arrow" aria-hidden="true">
+                            <div class="circle circle-3">3</div>
+                        </div>
+
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="1" data-agent="2"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="agent2-render-pair">
+                        <div class="between-arrow-2" aria-hidden="true">
+                            <div class="circle circle-4">4</div>
+                        </div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="1" data-kind="rendered" alt="Rendered image">
+                            <figcaption class="tile-caption">Chosen proposal view</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="render-gen-pair">
+                        <div class="between-arrow-3" aria-hidden="true"></div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="1" data-kind="generated" alt="Generated image">
+                            <figcaption class="tile-caption">Identity and Structure controlled image</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="viewer-row">
+                    <div class="prompt" data-folder="2"></div>
+                    <div class="prompt-down-arrow" aria-hidden="true">
+                        <div class="circle circle-1">1</div>
+                        <div class="circle circle-2">2</div>
+                    </div>
+
+                    <div class="scratchpad-pair">
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="2" data-agent="1"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+
+                        <div class="between-arrow" aria-hidden="true">
+                            <div class="circle circle-3">3</div>
+                        </div>
+
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="2" data-agent="2"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="agent2-render-pair">
+                        <div class="between-arrow-2" aria-hidden="true">
+                            <div class="circle circle-4">4</div>
+                        </div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="2" data-kind="rendered" alt="Rendered image">
+                            <figcaption class="tile-caption">Chosen proposal view</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="render-gen-pair">
+                        <div class="between-arrow-3" aria-hidden="true"></div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="2" data-kind="generated" alt="Generated image">
+                            <figcaption class="tile-caption">Identity and Structure controlled image</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <!-- <div class="viewer-row">
+                    <div class="scratchpad" data-folder="3" data-agent="1"></div>
+                    <div class="scratchpad" data-folder="3" data-agent="2"></div>
+                    <img class="result-image" data-folder="3" data-kind="rendered" alt="Rendered image">
+                    <img class="result-image" data-folder="3" data-kind="generated" alt="Generated image">
+                </div> -->
+                <div class="visualization-controls">
+                    <p>
+                        Drag to rotate • Scroll to zoom
+                    </p>
+                </div>
+            </div>
+
+            <div class="more-examples-link">
+                <a class="button" href="more_examples.html">
+                    <i class="fas fa-layer-group"></i> View more examples
+                </a>
+            </div>
+        </section>
+
+        <!-- Consistent Editability Section -->
+        <section class="editability">
+            <h2>Consistent Editability</h2>
+            <figure class="editability-figure">
+                <img src="editing_3dscratch.png" alt="Consistent editability results" class="editability-image">
+                <figcaption class="editability-caption">
+                    <strong>3D as a spatial scratchpad enables consistent image editing.</strong>
+                    Given the input prompt, we show the subjects instantiated, the scratchpad created and the subsequent image generated in the first column.
+                    In the succeeding columns, we show how edits made either through a) manual editing, or b) text-based editing to the scratchpad can be consistently reflected on to the final image while conserving identities of subjects and the background.
+                    Each column shows a progressive edit made over the state in the previous column.
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- Additional sections can be added here -->
+        <!-- Video, Method, Results, etc. -->
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 - 3D Space as a Scratchpad for Editable Text-to-Image Generation</p>
+    </footer>
+
+    <script type="module" src="viewer.js?v=3"></script>
+</body>
+</html>

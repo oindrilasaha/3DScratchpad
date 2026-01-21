@@ -1,0 +1,28 @@
+Here is a physically plausible layout that keeps each object’s X:Y:Z aspect ratio intact, places them close together without front-object overlap, and matches the prompt (radio center-right, record player to its left, sleeve behind them facing front). All sit on the ground plane (y0 = -1.0).
+
+3D bounding boxes (right-bottom-front to left-top-back)
+{
+  "a vintage radio, dial side visible": [-0.050, -1.000, 2.550, 0.306, -0.680, 2.728],
+  "an empty record player": [0.360, -1.000, 2.620, 0.710, -0.650, 2.900],
+  "an empty record sleeve": [0.000, -1.000, 3.300, 0.600, -0.400, 3.900]
+}
+
+Aspect-ratio checks (dx:dy:dz)
+- Radio ~ 0.356 : 0.320 : 0.178 ≈ 1 : 0.9 : 0.5
+- Record player 0.350 : 0.350 : 0.280 = 1 : 1.0 : 0.8
+- Sleeve 0.600 : 0.600 : 0.600 = 1 : 1 : 1
+
+Why this works
+- The record player is to the left of the radio (higher +X). Their X-spans are close but do not overlap: radio x ∈ [-0.050, 0.306], player x ∈ [0.360, 0.710].
+- The sleeve sits behind both (higher Z) and overlaps them in X, but is taller so it remains clearly visible in a front view, satisfying the “behind faces front” intent.
+- None of the backs are pushed near the far wall (all z1 < 5.0). Both corners of each box respect the trapezoidal X limits at their respective Z values.
+- Heights are realistic: player (0.35) ≳ radio (0.32), sleeve is tallest (0.6) to read as a background piece.
+
+Orientation suggestions (apply after placing boxes; do not resize boxes)
+- Vintage radio: upright, yaw -20° to -30° (turn it to the right so the dial side is emphasized), pitch 0°, roll 0°. This keeps the dial-side visible and matches “angled right.”
+- Record player: upright on the tabletop, yaw +10° to +15° (slightly turned left, complementing the radio’s angle); set the tonearm “inward” over the inner grooves. Dust cover half-open as in the reference.
+- Record sleeve: upright, facing the camera (toward -Z), yaw 0°, pitch 0°. Optionally lean back 2–3° or add a thin stand so it can plausibly stand behind the devices.
+
+Background planning (for plausibility)
+- A flat tabletop coincident with the ground plane (y = -1.0) spanning X from about +1.6 to -1.6 at Z ≈ 2.5–3.2 suffices.
+- Optional neutral wall around Z ≈ 4.3–4.6 to catch shadows from the sleeve; keep the sleeve’s back at z1 = 3.9 so it’s well in front of the wall.

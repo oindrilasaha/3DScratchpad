@@ -1,0 +1,18 @@
+Aspect-ratio check (normalized to X=1 using your boxes)
+- Kettle: spans X=0.50, Y=0.65, Z=0.40 → normalized (1 : 1.30 : 0.80). Matches target (1 : 1.3 : 0.8).
+- Oven: spans X=0.90, Y=0.81, Z=0.99 → normalized (1 : 0.90 : 1.10). Matches target (1 : 0.9 : 1.1).
+- Toaster: spans X=0.60, Y=0.60, Z=0.84 → normalized (1 : 1.00 : 1.40). Matches target (1 : 1.0 : 1.4).
+
+Height realism (compare only Y spans)
+- Oven: 0.81 (tallest)
+- Kettle: 0.65
+- Toaster: 0.60
+This ordering is natural and all heights are ≥ 0.3, so no resizing needed.
+
+Conclusion: All objects already maintain the specified normalized aspect ratios and have realistic relative heights. No updates required. Final bounding boxes remain:
+
+{
+  "a kettle with its spout pointing to the right": [0.75, -0.70, 2.55, 1.25, -0.05, 2.95],
+  "an empty oven with its door open": [-0.20, -0.70, 2.50, 0.70, 0.11, 3.49],
+  "an empty toaster facing forward": [-0.90, -0.70, 3.30, -0.30, -0.10, 4.14]
+}

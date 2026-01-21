@@ -1,0 +1,7 @@
+Subjects:
+- a foreground bus angled left
+- a midground cyclist riding straight toward the camera
+- a right-side traffic cone leaning left
+
+Background:
+- a paved road viewed head-on

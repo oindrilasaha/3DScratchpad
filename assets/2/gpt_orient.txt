@@ -1,0 +1,19 @@
+The current scene already matches the prompt: the kettle (spout to the right) sits beside the oven (door open toward the viewer), and the toaster faces forward. To emphasize “behind,” I’ll just push the toaster a bit farther back so it’s fully behind the oven while keeping everything visible and physically plausible. No rotations are needed.
+
+{
+  "a kettle with its spout pointing to the right": {
+    "scale": 1.0,
+    "rotation": [0, 0, 0],
+    "translation": [0.0, 0.0, 0.0]
+  },
+  "an empty oven with its door open": {
+    "scale": 1.0,
+    "rotation": [0, 0, 0],
+    "translation": [0.0, 0.0, 0.0]
+  },
+  "an empty toaster facing forward": {
+    "scale": 1.0,
+    "rotation": [0, 0, 0],
+    "translation": [0.0, 0.0, 0.4]
+  }
+}

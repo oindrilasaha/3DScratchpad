@@ -1,0 +1,27 @@
+Plan
+- Add a table-top plane (background element) at Y ≈ -0.70 so objects can rest on it. Make it span roughly X∈[-1.3, +1.4], Z∈[2.3, 4.3]. No bounding box needed for the table; it’s just to guide placements.
+- Place the oven and kettle side-by-side (close in X, not overlapping) near the front half of the scene. Put the toaster behind them (larger Z), still on the table and not overlapping in X.
+- Keep each object’s X:Y:Z aspect as specified.
+
+3D bounding boxes [x0, y0, z0, x1, y1, z1]
+- a kettle with its spout pointing to the right: [0.75, -0.70, 2.55, 1.25, -0.05, 2.95]
+  - Spans: X=0.50, Y=0.65, Z=0.40 (1 : 1.3 : 0.8)
+
+- an empty oven with its door open: [-0.20, -0.70, 2.50, 0.70, 0.11, 3.49]
+  - Spans: X=0.90, Y=0.81, Z=0.99 (1 : 0.9 : 1.1)
+
+- an empty toaster facing forward: [-0.90, -0.70, 3.30, -0.30, -0.10, 4.14]
+  - Spans: X=0.60, Y=0.60, Z=0.84 (1 : 1.0 : 1.4)
+
+Why this satisfies the prompt
+- Kettle and oven sit side-by-side with small gaps in X: toaster is behind them (larger Z) but on the same table plane, and none of the X extents overlap.
+- All corners lie within the scene bounds (including trapezoidal X limits at their respective Z depths).
+- Z backs are noticeably < 5.0.
+- Heights are realistic: oven tallest, kettle and toaster slightly shorter; all Y spans ≥ 0.3.
+
+Orientation suggestions (to be applied after placement; boxes assume the image orientations)
+- Kettle: upright; keep the spout pointing to screen-right (−X). Body roughly facing the viewer (toward −Z).
+- Oven: upright; front faces the viewer (toward −Z) with door open downward toward the viewer.
+- Toaster: upright; face forward toward the viewer (toward −Z).
+
+These orientations will make the scene read as: kettle with spout to the right, beside an open oven, with a forward-facing toaster behind them on the table.

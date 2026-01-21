@@ -1,0 +1,6 @@
+Subjects:
+- a silver hatchback angled left with its front pointing left
+- a tractor facing straight toward the camera, positioned farther from the camera
+
+Background:
+- a road

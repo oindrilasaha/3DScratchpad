@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Examples - 3D Space as a Scratchpad for Editable Text-to-Image Generation</title>
+    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="title">3D Space as a Scratchpad for Editable Text-to-Image Generation</h1>
+
+            <div class="authors">
+                <span class="author-block">
+                    <a href="https://oindrilasaha.github.io/" target="_blank">Oindrila Saha</a><sup>1</sup>,
+                </span>
+                <span class="author-block">
+                    <a href="https://research.adobe.com/person/vojtech-krs/" target="_blank">Vojtech Krs</a><sup>2</sup>,
+                </span>
+                <span class="author-block">
+                    <a href="https://research.adobe.com/person/radomir-mech/" target="_blank">Radomir Mech</a><sup>2</sup>,
+                </span><br>
+                <span class="author-block">
+                    <a href="https://people.cs.umass.edu/~smaji/" target="_blank">Subhransu Maji</a><sup>1</sup>,
+                </span>
+                <span class="author-block">
+                    <a href="https://mgadelha.me/" target="_blank">Matheus Gadelha</a><sup>2*</sup>,
+                </span>
+                <span class="author-block">
+                    <a href="https://www.kmatzen.com/" target="_blank">Kevin Blackburn-Matzen</a><sup>2*</sup>
+                </span>
+            </div>
+
+            <div class="affiliations">
+                <span class="affiliation-block">
+                    <sup>1</sup> University of Massachusetts Amherst<br>
+                    <sup>2</sup> Adobe Research
+                </span>
+                <div class="equal-contribution">
+                    <sup>*</sup> Equal advising
+                </div>
+            </div>
+
+            <div class="links">
+                <a href="#" class="button" target="_blank"><i class="fas fa-file-pdf"></i> Paper (arXiv)</a>
+                <a href="#" class="button" target="_blank"><i class="fab fa-github"></i> Code</a>
+                <a href="index.html" class="button"><i class="fas fa-arrow-left"></i> Back to main page</a>
+            </div>
+        </header>
+
+        <section class="visualization">
+            <h2>Additional Interactive Visualizations</h2>
+            <div class="visualization-container">
+                <div class="viewer-row">
+                    <div class="prompt" data-folder="3"></div>
+                    <div class="prompt-down-arrow" aria-hidden="true">
+                        <div class="circle circle-1">1</div>
+                        <div class="circle circle-2">2</div>
+                    </div>
+
+                    <div class="scratchpad-pair">
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="3" data-agent="1"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+
+                        <div class="between-arrow" aria-hidden="true">
+                            <div class="circle circle-3">3</div>
+                        </div>
+
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="3" data-agent="2"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="agent2-render-pair">
+                        <div class="between-arrow-2" aria-hidden="true">
+                            <div class="circle circle-4">4</div>
+                        </div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="3" data-kind="rendered" alt="Rendered image">
+                            <figcaption class="tile-caption">Chosen proposal view</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="render-gen-pair">
+                        <div class="between-arrow-3" aria-hidden="true"></div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="3" data-kind="generated" alt="Generated image">
+                            <figcaption class="tile-caption">Identity and Structure controlled image</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="viewer-row">
+                    <div class="prompt" data-folder="4"></div>
+                    <div class="prompt-down-arrow" aria-hidden="true">
+                        <div class="circle circle-1">1</div>
+                        <div class="circle circle-2">2</div>
+                    </div>
+
+                    <div class="scratchpad-pair">
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="4" data-agent="1"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+
+                        <div class="between-arrow" aria-hidden="true">
+                            <div class="circle circle-3">3</div>
+                        </div>
+
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="4" data-agent="2"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="agent2-render-pair">
+                        <div class="between-arrow-2" aria-hidden="true">
+                            <div class="circle circle-4">4</div>
+                        </div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="4" data-kind="rendered" alt="Rendered image">
+                            <figcaption class="tile-caption">Chosen proposal view</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="render-gen-pair">
+                        <div class="between-arrow-3" aria-hidden="true"></div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="4" data-kind="generated" alt="Generated image">
+                            <figcaption class="tile-caption">Identity and Structure controlled image</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="viewer-row">
+                    <div class="prompt" data-folder="6"></div>
+                    <div class="prompt-down-arrow" aria-hidden="true">
+                        <div class="circle circle-1">1</div>
+                        <div class="circle circle-2">2</div>
+                    </div>
+
+                    <div class="scratchpad-pair">
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="6" data-agent="1"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+
+                        <div class="between-arrow" aria-hidden="true">
+                            <div class="circle circle-3">3</div>
+                        </div>
+
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="6" data-agent="2"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="agent2-render-pair">
+                        <div class="between-arrow-2" aria-hidden="true">
+                            <div class="circle circle-4">4</div>
+                        </div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="6" data-kind="rendered" alt="Rendered image">
+                            <figcaption class="tile-caption">Chosen proposal view</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="render-gen-pair">
+                        <div class="between-arrow-3" aria-hidden="true"></div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="6" data-kind="generated" alt="Generated image">
+                            <figcaption class="tile-caption">Identity and Structure controlled image</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="viewer-row">
+                    <div class="prompt" data-folder="7"></div>
+                    <div class="prompt-down-arrow" aria-hidden="true">
+                        <div class="circle circle-1">1</div>
+                        <div class="circle circle-2">2</div>
+                    </div>
+
+                    <div class="scratchpad-pair">
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="7" data-agent="1"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+
+                        <div class="between-arrow" aria-hidden="true">
+                            <div class="circle circle-3">3</div>
+                        </div>
+
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="7" data-agent="2"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="agent2-render-pair">
+                        <div class="between-arrow-2" aria-hidden="true">
+                            <div class="circle circle-4">4</div>
+                        </div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="7" data-kind="rendered" alt="Rendered image">
+                            <figcaption class="tile-caption">Chosen proposal view</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="render-gen-pair">
+                        <div class="between-arrow-3" aria-hidden="true"></div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="7" data-kind="generated" alt="Generated image">
+                            <figcaption class="tile-caption">Identity and Structure controlled image</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="viewer-row">
+                    <div class="prompt" data-folder="8"></div>
+                    <div class="prompt-down-arrow" aria-hidden="true">
+                        <div class="circle circle-1">1</div>
+                        <div class="circle circle-2">2</div>
+                    </div>
+
+                    <div class="scratchpad-pair">
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="8" data-agent="1"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+
+                        <div class="between-arrow" aria-hidden="true">
+                            <div class="circle circle-3">3</div>
+                        </div>
+
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="8" data-agent="2"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="agent2-render-pair">
+                        <div class="between-arrow-2" aria-hidden="true">
+                            <div class="circle circle-4">4</div>
+                        </div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="8" data-kind="rendered" alt="Rendered image">
+                            <figcaption class="tile-caption">Chosen proposal view</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="render-gen-pair">
+                        <div class="between-arrow-3" aria-hidden="true"></div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="8" data-kind="generated" alt="Generated image">
+                            <figcaption class="tile-caption">Identity and Structure controlled image</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="viewer-row">
+                    <div class="prompt" data-folder="9"></div>
+                    <div class="prompt-down-arrow" aria-hidden="true">
+                        <div class="circle circle-1">1</div>
+                        <div class="circle circle-2">2</div>
+                    </div>
+
+                    <div class="scratchpad-pair">
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="9" data-agent="1"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+
+                        <div class="between-arrow" aria-hidden="true">
+                            <div class="circle circle-3">3</div>
+                        </div>
+
+                        <figure class="tile">
+                            <div class="scratchpad" data-folder="9" data-agent="2"></div>
+                            <figcaption class="tile-caption">Drag to rotate • Scroll to zoom</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="agent2-render-pair">
+                        <div class="between-arrow-2" aria-hidden="true">
+                            <div class="circle circle-4">4</div>
+                        </div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="9" data-kind="rendered" alt="Rendered image">
+                            <figcaption class="tile-caption">Chosen proposal view</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="render-gen-pair">
+                        <div class="between-arrow-3" aria-hidden="true"></div>
+
+                        <figure class="tile">
+                            <img class="result-image" data-folder="9" data-kind="generated" alt="Generated image">
+                            <figcaption class="tile-caption">Identity and Structure controlled image</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 - 3D Space as a Scratchpad for Editable Text-to-Image Generation</p>
+    </footer>
+
+    <script type="module" src="viewer.js?v=3"></script>
+</body>
+</html>

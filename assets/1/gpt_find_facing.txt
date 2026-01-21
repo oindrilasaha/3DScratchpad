@@ -1,0 +1,4 @@
+- Image 1 (sofa): Standing upright on the floor, facing toward the camera.
+- Image 2 (bookshelf): Standing upright, front/opening facing toward the camera.
+- Image 3 (box speaker with handle): Upright on the floor, front grille facing toward the camera.
+- Image 4 (small speaker): Upright; mostly facing the camera but slightly angled toward the right side of the frame.

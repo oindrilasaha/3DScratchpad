@@ -1,0 +1,7 @@
+Subject prompts:
+- a kettle with its spout pointing to the right
+- an oven with its door open toward the viewer
+- a toaster facing forward
+
+Background prompt:
+- a plain table surface with clear front-to-back depth

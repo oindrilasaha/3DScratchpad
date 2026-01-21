@@ -1,0 +1,17 @@
+{
+  "a monitor with an empty screen": {
+    "scale": 1.0,
+    "rotation": [0, 20, 0],
+    "translation": [0.0, 0.0, 0.0]
+  },
+  "a laptop with an empty screen": {
+    "scale": 1.0,
+    "rotation": [0, -25, 0],
+    "translation": [0.10, 0.0, -0.08]
+  },
+  "a table lamp": {
+    "scale": 1.0,
+    "rotation": [0, -10, 0],
+    "translation": [0.0, 0.0, 0.0]
+  }
+}

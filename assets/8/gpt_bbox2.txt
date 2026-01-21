@@ -1,0 +1,31 @@
+Analysis of normalized aspect ratios (sizes are ΔX, ΔY, ΔZ; normalized = [1, ΔY/ΔX, ΔZ/ΔX])
+
+- a bus, angled left
+  - Sizes: ΔX=0.818, ΔY=0.900, ΔZ=2.045
+  - Normalized: [1, 1.100, 2.501]
+  - Target: [1, 1.1, 2.5]
+  - Match: Yes (within rounding)
+
+- a cyclist riding straight forward, fully visible
+  - Sizes: ΔX=0.600, ΔY=0.600, ΔZ=0.180
+  - Normalized: [1, 1.000, 0.300]
+  - Target: [1, 1.0, 0.3]
+  - Match: Yes
+
+- a traffic cone leaning left
+  - Sizes: ΔX=0.292, ΔY=0.350, ΔZ=0.292
+  - Normalized: [1, 1.199, 1.000]
+  - Target: [1, 1.2, 1.0]
+  - Match: Yes
+
+Relative heights (ΔY only) and realism
+- Bus ΔY=0.900 > Cyclist ΔY=0.600 > Cone ΔY=0.350. All ≥ 0.3 and realistic.
+
+Conclusion: Aspect ratios are correctly maintained and heights are natural. No updates needed.
+
+Final bounding boxes dict
+{
+  "a bus, angled left": [0.150, -1.000, 2.200, 0.968, -0.100, 4.245],
+  "a cyclist riding straight forward, fully visible": [-0.480, -0.950, 3.050, 0.120, -0.350, 3.230],
+  "a traffic cone leaning left": [-0.842, -1.000, 2.400, -0.550, -0.650, 2.692]
+}

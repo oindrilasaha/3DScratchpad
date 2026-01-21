@@ -1,0 +1,8 @@
+Subjects:
+- a sofa facing forward
+- an empty bookshelf slightly rotated to the left
+- a left speaker angled inward
+- a right speaker angled inward
+
+Background:
+- an empty room with plain walls and a bare floor

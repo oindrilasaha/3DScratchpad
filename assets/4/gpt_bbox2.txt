@@ -1,0 +1,23 @@
+Aspect ratio check (using absolute sizes and normalizing by X):
+
+- a camera
+  - Sizes: X = 0.7142, Y = 0.50, Z = 0.3571
+  - Normalized (Y/X, Z/X): 0.700, 0.500 → matches 1 : 0.7 : 0.5
+
+- a lens
+  - Sizes: X = 0.40, Y = 0.40, Z = 0.32
+  - Normalized (Y/X, Z/X): 1.000, 0.800 → matches 1 : 1.0 : 0.8
+
+- a tripod
+  - Sizes: X = 0.5625, Y = 0.90, Z = 0.5625
+  - Normalized (Y/X, Z/X): 1.600, 1.000 → matches 1 : 1.6 : 1.0
+
+Heights are natural and realistic: tripod (0.90) > camera (0.50) > lens (0.40). All corners are within the scene bounds, and objects are close on X without overlapping.
+
+No updates needed. Final bounding boxes:
+
+{
+  "a camera": [-0.3571, -0.60, 2.10, 0.3571, -0.10, 2.4571],
+  "a lens": [0.40, -0.60, 2.15, 0.80, -0.20, 2.47],
+  "a tripod": [-1.08125, -1.00, 3.80, -0.51875, -0.10, 4.3625]
+}

@@ -1,0 +1,14 @@
+The scene already has correct placement: the tractor is behind the hatchback and both rest on the road. To satisfy “hatchback angled left toward the frame edge” while keeping the tractor facing the camera and clearly behind, only the car needs a yaw to the left; the tractor can stay as-is with a small nudge farther back to emphasize depth. No scaling is needed.
+
+{
+  "a silver hatchback": {
+    "scale": 1.0,
+    "rotation": [0, -60, 0],
+    "translation": [0.0, 0.0, 0.0]
+  },
+  "a tractor": {
+    "scale": 1.0,
+    "rotation": [0, 0, 0],
+    "translation": [0.0, 0.0, 0.2]
+  }
+}

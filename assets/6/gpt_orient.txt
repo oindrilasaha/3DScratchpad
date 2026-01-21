@@ -1,0 +1,17 @@
+{
+  "a vintage radio, dial side visible": {
+    "scale": 1.0,
+    "rotation": [0, 25, 0],
+    "translation": [-0.06, 0.0, 0.0]
+  },
+  "an empty record player": {
+    "scale": 1.0,
+    "rotation": [0, -12, 0],
+    "translation": [0.06, 0.0, 0.02]
+  },
+  "an empty record sleeve": {
+    "scale": 1.0,
+    "rotation": [3, 0, 0],
+    "translation": [0.0, 0.0, 0.0]
+  }
+}

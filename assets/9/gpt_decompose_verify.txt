@@ -1,0 +1,8 @@
+After review: minor update to the background to avoid introducing unintended extra elements.
+
+Subjects:
+- a forward-facing suitcase with its handle extended upward
+- a backpack angled slightly to the left
+
+Background:
+- an empty airport terminal interior

@@ -1,0 +1,3 @@
+- Crop 1: Camera body — upright and facing toward the viewer (front-on).
+- Crop 2: Lens — front element facing the viewer; pointing out of the screen toward us.
+- Crop 3: Tripod — standing upright on the ground, viewed roughly front-on.

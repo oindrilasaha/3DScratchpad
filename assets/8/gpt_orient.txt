@@ -1,0 +1,17 @@
+{
+  "a bus, angled left": {
+    "scale": 1.0,
+    "rotation": [0.0, -30.0, 0.0],
+    "translation": [0.0, 0.0, -0.1]
+  },
+  "a cyclist riding straight forward, fully visible": {
+    "scale": 1.0,
+    "rotation": [0.0, 90.0, -3.0],
+    "translation": [-0.15, 0.0, 0.1]
+  },
+  "a traffic cone leaning left": {
+    "scale": 1.0,
+    "rotation": [0.0, 0.0, -12.0],
+    "translation": [-0.12, 0.0, 0.0]
+  }
+}

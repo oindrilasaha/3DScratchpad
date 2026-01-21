@@ -1,0 +1,3 @@
+1) Monitor: Facing toward the camera; screen front-on; standing upright on the desk.
+2) Laptop: Open and facing toward the camera; screen front-on; sitting upright on the desk.
+3) Lamp: Standing upright; essentially facing the camera (no left/right orientation).

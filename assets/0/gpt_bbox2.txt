@@ -1,0 +1,23 @@
+Analysis of normalized aspect ratios
+
+- A silver hatchback
+  - Spans: ΔX = 0.50, ΔY = 0.50, ΔZ = 0.80
+  - Normalized (divide by ΔX): 1 : 1.0 : 1.6
+  - Target: 1 : 1.0 : 1.6 → Match
+
+- A tractor
+  - Spans: ΔX = 0.60, ΔY = 0.72, ΔZ = 0.90
+  - Normalized: 1 : 1.2 : 1.5
+  - Target: 1 : 1.2 : 1.5 → Match
+
+Height realism (compare only Y spans)
+- Hatchback height = 0.50
+- Tractor height = 0.72
+- The tractor is taller than the hatchback, which is realistic; both ≥ 0.3. No adjustment needed.
+
+Since all normalized aspect ratios and relative heights are correct, the boxes remain unchanged.
+
+{
+  "a silver hatchback": [-0.45, -1.0, 2.35, 0.05, -0.50, 3.15],
+  "a tractor": [0.06, -1.0, 3.20, 0.66, -0.28, 4.10]
+}

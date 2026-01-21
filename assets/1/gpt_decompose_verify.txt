@@ -1,0 +1,8 @@
+Subjects:
+- a front-facing sofa
+- an empty bookshelf slightly turned left
+- a left speaker angled right
+- a right speaker angled left
+
+Background:
+- an empty room

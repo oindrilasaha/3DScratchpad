@@ -1,0 +1,25 @@
+Plan for scene and background
+- Ground plane: y = -1.0 (flat floor). No other props except a soft, distant backdrop so nothing blocks the view. If you add a back wall, keep it at z ≥ 4.8 to stay behind the shoebox.
+- Composition: shoes near the front-middle of the floor; shoebox set behind them and slightly to the left, so it remains clearly visible while not overlapping in X.
+
+3D bounding boxes (axis-aligned, same orientation as the images, aspect ratios preserved)
+Returned as [x0, y0, z0, x1, y1, z1] with x0,y0,z0 = right-bottom-front and x1,y1,z1 = left-top-back.
+
+{
+  "a left shoe": [-0.15, -1.00, 2.86, 0.55, -0.65, 3.14],
+  "a right shoe": [-0.95, -1.00, 2.90, -0.25, -0.65, 3.18],
+  "an empty shoebox": [0.60, -1.00, 3.90, 1.50, -0.19, 4.44]
+}
+
+Notes on sizes and plausibility
+- Left/right shoes use X:Y:Z ≈ 0.70:0.35:0.28 (≥0.3 height). Both sit on the floor (y0 = -1.0).
+- Shoebox uses X:Y:Z ≈ 0.90:0.81:0.54, taller than the shoes and placed farther back (z ≈ 3.9–4.44).
+- All objects are close together in X but non-overlapping: right shoe [-0.95, -0.25], left shoe [-0.15, 0.55], shoebox [0.60, 1.50].
+- All corners lie within the trapezoidal frustum bounds; none are near z = 5.0.
+
+Orientation suggestions to apply after placement (do not change boxes)
+- Left shoe: lie flat on the floor; yaw so the toe points straight forward into +Z (≈ +90° from its image orientation); no roll; tiny pitch up at the toe if desired.
+- Right shoe: lie flat; yaw so the toe points diagonally forward-right (toward +Z and -X), about 30–40° to the right from straight-ahead; no roll.
+- Shoebox: keep upright with lid up; face straight toward the viewer (front/opening toward −Z), minimal yaw; no roll; slight lid tilt back if you want it to read as open.
+
+This arrangement matches “pair of shoes on the floor: the left shoe points forward, the right shoe angles right, and a shoebox behind faces straight toward the viewer,” while keeping realistic relative sizes and visibility.

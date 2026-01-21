@@ -1,0 +1,17 @@
+{
+  "a left shoe": {
+    "scale": 1.0,
+    "rotation": [0.0, 90.0, 0.0],
+    "translation": [0.0, 0.0, 0.0]
+  },
+  "a right shoe": {
+    "scale": 1.0,
+    "rotation": [0.0, 55.0, 0.0],
+    "translation": [0.0, 0.0, 0.0]
+  },
+  "an empty shoebox": {
+    "scale": 1.0,
+    "rotation": [0.0, 0.0, 0.0],
+    "translation": [0.0, 0.0, 0.0]
+  }
+}

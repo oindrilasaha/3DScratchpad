@@ -1,0 +1,784 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 20px 0;
+}
+
+.title {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    line-height: 1.3;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Authors Styles */
+.authors {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.author-block {
+    display: inline;
+    margin: 0 5px;
+}
+
+.author-block a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.author-block a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+.author-block sup {
+    margin-left: 2px;
+}
+
+/* Affiliations */
+.affiliations {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 25px;
+    margin-top: 15px;
+}
+
+.affiliation-block {
+    display: inline-block;
+    line-height: 1.6;
+}
+
+.equal-contribution {
+    margin-top: 10px;
+    font-size: 0.9em;
+    font-style: italic;
+    color: #777;
+}
+
+/* Links/Buttons */
+.links {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.button i {
+    font-size: 1.1em;
+}
+
+/* Teaser Section */
+.teaser {
+    margin: 50px 0;
+    text-align: center;
+}
+
+.teaser-image {
+    width: 100%;
+    max-width: 1100px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.caption {
+    text-align: justify;
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: #555;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.caption strong {
+    color: #2c3e50;
+}
+
+/* Abstract and Sections */
+section {
+    margin: 50px 0;
+}
+
+section h2 {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+.abstract p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    text-align: justify;
+    color: #444;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 3D Visualization Section */
+.visualization {
+    margin: 0px 0;
+}
+
+.visualization-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.viewer-row {
+    display: flex;
+    gap: 5px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 28px; /* space between rows */
+}
+
+/* Keep each visual+caption together as a tile */
+.tile {
+    width: var(--tile);
+}
+
+.tile-caption {
+    text-align: center;
+    color: #666;
+    font-size: 0.85em;
+    font-style: italic;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Ensure the 3D canvas and result images fill the tile width */
+.tile .scratchpad,
+.tile .result-image {
+    width: var(--tile);
+    height: var(--tile);
+}
+
+.prompt {
+    width: 100%;
+    max-width: 1210px; /* ~ 4 tiles (4*300) + 3 gaps (3*5) */
+    padding: 10px 12px;
+    margin-bottom: 0px;
+    background: #f6f8fa;
+    border: 1px solid #e6e8eb;
+    border-radius: 8px;
+    color: #333;
+    font-size: 0.95em;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+/* Arrow below the prompt (inserted in DOM right after .prompt) */
+.prompt-down-arrow {
+    width: var(--tile);
+    height: 80px; /* compact, avoids overlap */
+    margin: -2px auto 0px;
+    position: relative;
+    flex: 0 0 100%;
+
+    /* Anchor at the midpoint of the first 300px tile */
+    padding-left: calc(var(--tile) / 2);
+    box-sizing: border-box;
+}
+
+/* Thick vertical shaft */
+.prompt-down-arrow::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: calc(var(--tile) / 2);
+    transform: translateX(-50%);
+    width: 3px; /* thinner */
+    height: calc(100% - 2px);
+    background: #0b2a33;
+    border-radius: 6px;
+    z-index: 1;
+}
+
+/* Arrowhead (black) */
+.prompt-down-arrow::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: calc(var(--tile) / 2);
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 12px solid #000;
+    z-index: 3;
+}
+
+/* Circles + numbers */
+.prompt-down-arrow .circle {
+    position: absolute;
+    left: calc(var(--tile) / 2);
+    transform: translateX(-50%);
+    width: 26px;  /* smaller */
+    height: 26px;
+    border-radius: 999px;
+    background: #fff;
+    border: 3px solid #0b2a33; /* thinner */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 17px; /* smaller */
+    line-height: 1;
+    color: #e11b22;
+    z-index: 2;
+}
+
+.prompt-down-arrow .circle.circle-1 {
+    top: 6px;
+}
+
+.prompt-down-arrow .circle.circle-2 {
+    top: 36px; /* spaced so it doesn't collide with circle-1 */
+}
+
+/* The between-arrow sits in its own narrow column */
+.between-arrow {
+    width: var(--arrow-gap);
+    height: var(--tile);
+    position: relative;
+    flex: 0 0 var(--arrow-gap);
+}
+
+/* Numbered circle on the between-arrow (matches prompt circles) */
+.between-arrow .circle.circle-3 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-60%, -50%);
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    background: #fff;
+    border: 3px solid #0b2a33;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 17px;
+    line-height: 1;
+    color: #e11b22;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.scratchpad {
+    width: var(--tile);
+    height: var(--tile);
+    /* Background is rendered by Three.js; keep container neutral */
+    background: #f7fbff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    display: block;
+}
+
+/* Per-viewer interaction hint under each scratchpad */
+.scratchpad-controls {
+    width: var(--tile);
+    text-align: center;
+    color: #666;
+    font-size: 0.85em;
+    font-style: italic;
+    margin-top: 4px;
+    margin-bottom: 2px;
+}
+
+.visualization-controls {
+    display: none;
+}
+
+.scratchpad canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.result-image {
+    width: var(--tile);
+    height: var(--tile);
+    object-fit: cover;
+    background: #f7fbff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
+.visualization-controls {
+    text-align: center;
+    margin-top: 5px; /* separate from last row */
+    color: #666;
+    font-size: 0.9em;
+}
+
+.visualization-controls p {
+    margin: 0;
+    font-style: italic;
+}
+
+:root {
+    --tile: 300px;
+    --gap: 5px;
+    --arrow-gap: 40px; /* dedicated space between scratchpads */
+    --arrow-gap-2: 40px; /* dedicated space between agent2 and rendered */
+    --arrow-gap-3: 40px; /* dedicated space between rendered and generated */
+}
+
+@media (max-width: 900px) {
+    #canvas-container {
+        height: 520px;
+    }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #2c3e50;
+    color: white;
+    margin-top: 50px;
+}
+
+footer p {
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.8em;
+    }
+
+    .authors {
+        font-size: 1em;
+    }
+
+    .links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button {
+        width: 80%;
+        justify-content: center;
+    }
+
+    .caption {
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 10px;
+    }
+
+    .title {
+        font-size: 1.5em;
+    }
+
+    .authors {
+        font-size: 0.9em;
+    }
+
+    section h2 {
+        font-size: 1.5em;
+    }
+}
+
+/* Scratchpad pair + between-arrow column */
+.scratchpad-pair {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap);
+}
+
+/* The between-arrow sits in its own narrow column */
+.between-arrow {
+    width: var(--arrow-gap);
+    height: var(--tile);
+    position: relative;
+    flex: 0 0 var(--arrow-gap);
+}
+
+.between-arrow::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    /* horizontal thin shaft */
+    width: calc(var(--arrow-gap) - 0px);
+    height: 3px;
+    background: #0b2a33;
+    border-radius: 999px;
+}
+
+.between-arrow::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(calc(-50% + (var(--arrow-gap) / 2) - 0px), -50%);
+
+    /* arrow head pointing right */
+    width: 0;
+    height: 0;
+    border-left: 12px solid #000;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+}
+
+/* Pair between scratchpad #2 and rendered tile */
+.agent2-render-pair {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap);
+}
+
+.between-arrow-2 {
+    width: var(--arrow-gap-2);
+    height: var(--tile);
+    position: relative;
+    flex: 0 0 var(--arrow-gap-2);
+}
+
+/* Numbered circle on the between-arrow-2 (matches prompt circles) */
+.between-arrow-2 .circle.circle-4 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-60%, -50%);
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    background: #fff;
+    border: 3px solid #0b2a33;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 17px;
+    line-height: 1;
+    color: #e11b22;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.between-arrow-2::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: calc(var(--arrow-gap-2) - 0px);
+    height: 3px;
+    background: #0b2a33;
+    border-radius: 999px;
+}
+
+.between-arrow-2::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(calc(-50% + (var(--arrow-gap-2) / 2) - 0px), -50%);
+
+    width: 0;
+    height: 0;
+    border-left: 12px solid #000;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+}
+
+/* Pair between rendered tile and generated tile */
+.render-gen-pair {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap);
+}
+
+.between-arrow-3 {
+    width: var(--arrow-gap-3);
+    height: var(--tile);
+    position: relative;
+    flex: 0 0 var(--arrow-gap-3);
+}
+
+.between-arrow-3::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: calc(var(--arrow-gap-3) - 0px);
+    height: 3px;
+    background: #0b2a33;
+    border-radius: 999px;
+}
+
+.between-arrow-3::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(calc(-50% + (var(--arrow-gap-3) / 2) - 0px), -50%);
+
+    width: 0;
+    height: 0;
+    border-left: 12px solid #000;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+}
+
+/* Method Section */
+.method {
+    margin: 50px 0;
+}
+
+.method-figure {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.method-image {
+    width: 100%;
+    max-width: 1100px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 0 auto 14px;
+}
+
+.method-caption {
+    text-align: justify;
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: #555;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* LaTeX-like circled numbers used in method text */
+.mcircle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.35em;
+    height: 1.35em;
+    border-radius: 999px;
+    background: #fff;
+    border: 2px solid #0b2a33;
+    color: #e11b22;
+    font-weight: 800;
+    font-size: 0.95em;
+    line-height: 1;
+    vertical-align: text-bottom;
+    margin: 0 0.1em;
+}
+
+/* Consistent Editability Section */
+.editability {
+    margin: 50px 0;
+}
+
+.editability-figure {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.editability-image {
+    width: 100%;
+    max-width: 1100px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 0 auto 14px;
+}
+
+.editability-caption {
+    text-align: justify;
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: #555;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.more-examples-link {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+}
+
+.more-examples-link .button {
+    padding: 16px 34px;
+    font-size: 1.12em;
+    font-weight: 800;
+    border-radius: 999px;
+
+    background: linear-gradient(135deg, #ff4d4d 0%, #ff8a00 45%, #ffd43b 100%);
+    box-shadow: 0 14px 28px rgba(255, 138, 0, 0.25), 0 6px 14px rgba(255, 77, 77, 0.20);
+
+    letter-spacing: 0.2px;
+    transform: translateZ(0);
+    position: relative;
+    overflow: hidden;
+}
+
+.more-examples-link .button::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.60), rgba(255, 255, 255, 0) 55%);
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.more-examples-link .button:hover {
+    background: linear-gradient(135deg, #ff3b3b 0%, #ff7a00 45%, #ffd000 100%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 18px 36px rgba(255, 138, 0, 0.32), 0 10px 18px rgba(255, 77, 77, 0.22);
+}
+
+.more-examples-link .button i {
+    font-size: 1.2em;
+}
+
+@keyframes moreExamplesPulse {
+    0%, 100% { filter: drop-shadow(0 0 0 rgba(255, 138, 0, 0.0)); }
+    50% { filter: drop-shadow(0 0 12px rgba(255, 138, 0, 0.45)); }
+}
+
+.more-examples-link .button {
+    animation: moreExamplesPulse 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .more-examples-link .button {
+        animation: none;
+    }
+}
+
+/* Interaction Hint Overlay */
+.interaction-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.interaction-hint.fade-out {
+    opacity: 0;
+}
+
+.hint-icon-container {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: pulse-shadow 2s infinite;
+}
+
+.hint-icon-container i,
+.hint-icon-container svg {
+    animation: hand-wiggle 2s ease-in-out infinite;
+}
+
+@keyframes pulse-shadow {
+    0% { box-shadow: 0 0 0 0 rgba(44, 62, 80, 0.2); }
+    70% { box-shadow: 0 0 0 10px rgba(44, 62, 80, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(44, 62, 80, 0); }
+}
+
+@keyframes hand-wiggle {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-15deg) scale(1.1); }
+    75% { transform: rotate(15deg) scale(1.1); }
+}
+

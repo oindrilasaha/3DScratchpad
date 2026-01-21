@@ -1,0 +1,25 @@
+Planned setting
+- Place a rectangular table top at Y = -0.20 spanning roughly X ∈ [-1.10, +1.10], Z ∈ [2.30, 3.40]. Objects sit on this table, upright as in the reference images.
+- Arrange left-to-right across the frame: monitor (left), laptop (slightly right of the monitor and closer to camera), lamp (rightmost). They are close in X but their X-intervals do not overlap.
+
+3D bounding boxes [x0, y0, z0, x1, y1, z1]
+- a monitor with an empty screen: [0.05, -0.20, 2.95, 0.85, 0.52, 3.27]
+  - Size (X, Y, Z) = (0.80, 0.72, 0.32) → aspect 1 : 0.9 : 0.4
+- a laptop with an empty screen: [-0.50, -0.20, 2.45, 0.00, 0.15, 2.70]
+  - Size (X, Y, Z) = (0.50, 0.35, 0.25) → aspect 1 : 0.7 : 0.5
+- a table lamp: [-0.92, -0.20, 2.60, -0.52, 0.40, 3.00]
+  - Size (X, Y, Z) = (0.40, 0.60, 0.40) → aspect 1 : 1.5 : 1.0
+
+Notes on plausibility and spacing
+- All bottoms sit on the table (y0 = -0.20). Heights are realistic: monitor (0.72) > lamp (0.60) > laptop (0.35), and all ≥ 0.30.
+- X-intervals are close but non-overlapping:
+  - Monitor: [0.05, 0.85]
+  - Laptop: [-0.50, 0.00] (gap of 0.05 from the monitor)
+  - Lamp: [-0.92, -0.52] (gap of 0.02 from the laptop)
+- Z positions fulfill “laptop before the monitor”: laptop z1 = 2.70 is in front of monitor z0 = 2.95. Lamp sits between them in depth but to the right.
+- All corners are within the trapezoidal XZ bounds and z1 values are well under 5.0.
+
+Suggested facing/orientations to apply after placement
+- Monitor: upright; yaw about -20° (turned toward the right side of the frame). Pitch/roll 0°.
+- Laptop: upright with open screen; yaw about +25° (angled left toward the monitor). Pitch/roll 0°.
+- Table lamp: upright; neutral or slight inward yaw of +10° toward center. Pitch/roll 0°.

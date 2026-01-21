@@ -1,0 +1,3 @@
+- Bus: facing directly toward the camera (front-on).
+- Cyclist: facing left in the frame, in a forward-leaning riding posture.
+- Traffic cone: standing upright on the road, vertical with the tip pointing upward.

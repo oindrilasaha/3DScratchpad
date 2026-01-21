@@ -1,0 +1,7 @@
+Subjects:
+- a left shoe pointing forward
+- a right shoe turned to the right
+- an empty shoebox positioned farther from the viewer, front facing the viewer
+
+Background:
+- a plain floor setting with a flat surface, gentle shadows, and soft, even lighting

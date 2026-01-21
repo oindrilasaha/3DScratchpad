@@ -1,0 +1,7 @@
+Subject prompts:
+- a front-facing camera
+- a left-facing lens
+- a right-leaning tripod
+
+Background prompt:
+- a neutral studio backdrop with soft, even lighting and a smooth gradient background

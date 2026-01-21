@@ -1,0 +1,6 @@
+Subjects:
+- a suitcase facing forward with its handle pulled up
+- a backpack turned slightly to the left
+
+Background:
+- an airport terminal setting

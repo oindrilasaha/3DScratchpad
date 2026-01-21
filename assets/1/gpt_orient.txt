@@ -1,0 +1,22 @@
+{
+  "a sofa": {
+    "scale": 1.0,
+    "rotation_deg_xyz": [0.0, 0.0, 0.0],
+    "translation_delta_xyz": [0.0, 0.0, 0.0]
+  },
+  "an empty bookshelf": {
+    "scale": 1.0,
+    "rotation_deg_xyz": [0.0, -12.0, 0.0],
+    "translation_delta_xyz": [0.0, 0.0, 0.05]
+  },
+  "a left speaker": {
+    "scale": 1.0,
+    "rotation_deg_xyz": [0.0, 20.0, 0.0],
+    "translation_delta_xyz": [0.1, 0.0, 0.0]
+  },
+  "a right speaker": {
+    "scale": 1.0,
+    "rotation_deg_xyz": [0.0, -20.0, 0.0],
+    "translation_delta_xyz": [-0.1, 0.0, 0.0]
+  }
+}

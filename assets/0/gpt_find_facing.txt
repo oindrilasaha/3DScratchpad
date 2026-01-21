@@ -1,0 +1,2 @@
+- First image (white car): Facing toward the camera (front view), upright on the road.
+- Second image (green tractor): Facing toward the camera (front view), upright on the road.

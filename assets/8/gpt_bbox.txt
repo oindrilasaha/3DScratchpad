@@ -1,0 +1,30 @@
+Planned scene layout
+- Ground/road: flat road surface on the ground plane (Y = -1) running along +Z. Place faint lane centerlines converging toward Z ≈ 5. Low grass/trees can sit near Z ≈ 4.6–4.9 at Y ≈ -0.2 to suggest depth. Keep sky above Y ≈ 0.
+- Layering: the bus is the main foreground subject; the cyclist is behind it and slightly to the right (toward −X) so they remain visible; the traffic cone is on the right edge of the road, near-foreground but a bit behind the bus.
+- All sizes respect each object’s X:Y:Z ratios; heights chosen to be realistic: bus tallest, cyclist mid, cone small. Objects are close laterally but with small gaps to avoid overlap.
+
+3D bounding boxes [x0, y0, z0, x1, y1, z1]
+- a bus, angled left: [0.150, -1.000, 2.200, 0.968, -0.100, 4.245]
+  - Size (ΔX, ΔY, ΔZ) ≈ (0.818, 0.900, 2.045) respecting 1:1.1:2.5.
+- a cyclist riding straight forward, fully visible: [-0.480, -0.950, 3.050, 0.120, -0.350, 3.230]
+  - Size ≈ (0.600, 0.600, 0.180) respecting 1:1.0:0.3.
+- a traffic cone leaning left: [-0.842, -1.000, 2.400, -0.550, -0.650, 2.692]
+  - Size ≈ (0.292, 0.350, 0.292) respecting 1:1.2:1.0.
+
+Notes on placement and plausibility
+- X-axis proximity without overlap:
+  - Cyclist sits just to the right of the bus (gap ≈ 0.03 in X at the near plane).
+  - Cone is further right of the cyclist (gap ≈ 0.07).
+- Depth ordering: bus occupies foreground (z0 = 2.20), cone slightly farther (z0 = 2.40), cyclist clearly behind (z0 = 3.05). None of the backs are pushed to Z = 5.0.
+
+Orientation suggestions (to be applied after placement; boxes were not rotated)
+- Bus: yaw a moderate angle to the left (nose toward +X, ~25–35°), slight -Z component so front is nearer the camera; keep upright (no roll).
+- Cyclist: heading straight toward the camera (face -Z), upright with minimal roll; slight pedaling lean acceptable (<5°).
+- Traffic cone: base on the ground plane; lean the cone’s axis toward the left (+X) by ~10–15°; yaw can remain neutral.
+
+Bounding boxes dict (in required key order)
+{
+  "a bus, angled left": [0.150, -1.000, 2.200, 0.968, -0.100, 4.245],
+  "a cyclist riding straight forward, fully visible": [-0.480, -0.950, 3.050, 0.120, -0.350, 3.230],
+  "a traffic cone leaning left": [-0.842, -1.000, 2.400, -0.550, -0.650, 2.692]
+}

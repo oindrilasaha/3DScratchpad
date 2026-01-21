@@ -1,0 +1,21 @@
+Plan for background and physical plausibility:
+- Put a low table/platform at y ≈ -0.6 (top surface) spanning roughly X from -0.5 to +0.9 and Z from 2.0 to 2.6 so the camera and lens can sit on it.
+- Keep the floor at y = -1.0 for the tripod behind.
+- No back wall is needed; keep all backs well short of Z = 5.0 for depth separation.
+
+Bounding boxes (right-bottom-front to left-top-back), respecting each object’s X:Y:Z aspect ratio and the scene limits:
+- a camera: scale chosen so Y = 0.50, aspect 1:0.7:0.5 → size (X,Y,Z) ≈ (0.7143, 0.50, 0.3571). Placed near center-front on the table.
+  [x0, y0, z0, x1, y1, z1] = [-0.3571, -0.60, 2.10, 0.3571, -0.10, 2.4571]
+
+- a lens: scale chosen so Y = 0.40, aspect 1:1.0:0.8 → size (X,Y,Z) = (0.40, 0.40, 0.32). Placed to the left of the camera on the same table.
+  [x0, y0, z0, x1, y1, z1] = [0.40, -0.60, 2.15, 0.80, -0.20, 2.47]
+
+- a tripod: scale chosen so Y = 0.90, aspect 1:1.6:1.0 → size (X,Y,Z) = (0.5625, 0.90, 0.5625). Placed behind and slightly to the right, standing on the floor.
+  [x0, y0, z0, x1, y1, z1] = [-1.08125, -1.00, 3.80, -0.51875, -0.10, 4.3625]
+
+These placements keep both front and back corners within the trapezoidal X limits at their respective Z depths, maintain non-overlapping X spans while staying close, and preserve realistic relative heights (tripod tallest, camera medium, lens slightly shorter).
+
+Orientation suggestions to match the prompt (apply after placement; boxes assume the original image orientations):
+- a camera: face the viewer (yaw ≈ 0°, pitch 0°, roll 0°), upright.
+- a lens: rotate to face left (+X). Suggested yaw ≈ +90°, pitch 0°, roll 0°. Keep it upright on the table.
+- a tripod: behind and leaning right (toward -X). Suggested small tilt: roll about the Z axis ≈ -8° to -12°, legs on the floor; head can remain roughly facing the viewer (yaw near 0°).
